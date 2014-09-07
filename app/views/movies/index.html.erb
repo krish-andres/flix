@@ -1,0 +1,26 @@
+<h1><%= pluralize(@movies.size, 'Movie') %></h1>
+
+<% @movies.each do |movie| %>
+  <article>
+    <header>
+      <h1><%= movie.title %></h1>
+    </header>
+    <h3>Description:</h3>
+    <p><%= movie.description %></p>
+
+    <table>
+      <tr>
+        <th>Rating:</th>
+        <td><%= movie.rating %></td>
+      </tr>
+      <tr>
+        <th>Release Date:</th>
+        <td><%= movie.released_on %></td>
+      </tr>
+      <tr>
+        <th>Box Office Gross:</th>
+        <td><%= number_to_currency(movie.total_gross) %></td>
+      </tr>
+    </table>
+  </article>
+<% end %>
