@@ -3,7 +3,7 @@
 <% @movies.each do |movie| %>
   <article>
     <header>
-      <h1><%= movie.title %></h1>
+      <h1><%= link_to movie.title, movie %></h1>
     </header>
     <h3>Description:</h3>
     <p><%= movie.description %></p>

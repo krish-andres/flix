@@ -1,0 +1,15 @@
+<h1><%= @movie.title %></h1>
+
+<h3>Rating:</h3>
+<p><%= @movie.rating %></p>
+
+<h3>Description:</h3>
+<p><%= @movie.description %></p>
+
+<h3>Release Date:</h3>
+<p><%= @movie.released_on %></p>
+
+<h3>Box Office:</h3>
+<p><%= number_to_currency(@movie.total_gross) %></p>
+
+<%= link_to "All Movies", movies_path %>
