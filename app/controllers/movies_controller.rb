@@ -2,7 +2,7 @@ class MoviesController < ApplicationController
   before_action :find_movie, except: [:index, :new, :create]
 
   def index
-    @movies = Movie.all 
+    @movies = Movie.released
   end
 
   def show
