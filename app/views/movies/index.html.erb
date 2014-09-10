@@ -4,7 +4,8 @@
 
 <% @movies.each do |movie| %>
   <article>
-    <header>
+    <header class="movie">
+      <%= image_for(movie) %>
       <h1><%= link_to movie.title, movie %></h1>
     </header>
     <h3>Description:</h3>
@@ -12,12 +13,24 @@
 
     <table>
       <tr>
+        <th>Cast:</th>
+        <td><%= movie.cast %></td>
+      </tr>
+      <tr>
+        <th>Director:</th>
+        <td><%= movie.director %></td>
+      </tr>
+      <tr>
         <th>Rating:</th>
         <td><%= movie.rating %></td>
       </tr>
       <tr>
         <th>Release Date:</th>
         <td><%= movie.released_on %></td>
+      </tr>
+      <tr>
+        <th>Duration:</th>
+        <td><%= movie.duration %></td>
       </tr>
       <tr>
         <th>Box Office Gross:</th>

@@ -21,7 +21,7 @@ describe "Viewing the list of movies" do
   end
 
   it "does not show a movie that hasn't yet been released" do
-    movie = Movie.create(movie_attributes(released_on: 1.month.from_now)
+    movie = Movie.create(movie_attributes(released_on: 1.month.from_now))
 
     visit movies_url
 
