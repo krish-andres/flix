@@ -22,6 +22,7 @@
 <h3>Box Office:</h3>
 <p><%= format_total_gross(@movie) %></p>
 
-<%= link_to "All Movies", movies_path %> ||
-<%= link_to "Edit", edit_movie_path(@movie) %> ||
-<%= link_to "Delete", @movie, method: :delete, data: { confirm: 'Are you sure?' } %>
+<nav>
+  <%= link_to "Edit", edit_movie_path(@movie) %> ||
+  <%= link_to "Delete", @movie, method: :delete, data: { confirm: 'Are you sure?' } %>
+</nav>
