@@ -7,7 +7,7 @@
       <h1><%= link_to movie.title, movie %></h1>
     </header>
     <h3>Description:</h3>
-    <p><%= movie.description %></p>
+    <p><%= truncate(movie.description, length: 140, separator: ' ') %></p>
 
     <table>
       <tr>

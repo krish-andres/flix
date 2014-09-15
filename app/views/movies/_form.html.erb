@@ -9,7 +9,7 @@
   </p>
   <p>
     <%= f.label :rating %><br />
-    <%= f.text_field :rating %>
+    <%= f.select :rating, Movie::RATINGS, prompt: "Select" %>
   </p>
   <p>
     <%= f.label :released_on %><br />
