@@ -13,7 +13,7 @@ class MoviesController < ApplicationController
 
   def update
     if @movie.update(movie_params)
-      redirect_to @movie, notice: "Movie Updated!"
+      redirect_to @movie, notice: "Movie successfully updated!"
     else
       render :edit
     end
@@ -34,7 +34,7 @@ class MoviesController < ApplicationController
 
   def destroy
     @movie.destroy
-    redirect_to movies_url
+    redirect_to movies_url, alert: "Movie successfully deleted!"
   end
 
   private
