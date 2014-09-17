@@ -34,4 +34,8 @@ class Movie < ActiveRecord::Base
     where("released_on >= ?", '2000-01-01').order("released_on DESC")
   end
     
+  def average_stars
+    reviews.average(:stars)
+  end
+
 end

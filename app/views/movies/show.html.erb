@@ -22,11 +22,19 @@
 <h3>Box Office:</h3>
 <p><%= format_total_gross(@movie) %></p>
 
+<h3>Average Reviewer Rating:</h3>
+<strong>
+  <p><%= format_average_stars(@movie) %></p>
+</strong>
+
 <p>
   <%= link_to pluralize(@movie.reviews.size, "Review"), movie_reviews_path(@movie) %>
 </p>
 
+<br />
+
 <nav>
+  <%= link_to "Write Review", new_movie_review_path(@movie) %>
   <%= link_to "Edit", edit_movie_path(@movie) %> ||
   <%= link_to "Delete", @movie, method: :delete, data: { confirm: 'Are you sure?' } %>
 </nav>

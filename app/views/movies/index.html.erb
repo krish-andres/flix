@@ -1,13 +1,13 @@
 <h1><%= pluralize(@movies.size, 'Movie') %></h1>
 
-<% @movies.each do |movie| %>
-  <article>
+<article>
+  <% @movies.each do |movie| %>
     <header class="movie">
       <%= image_for(movie) %>
       <h1><%= link_to movie.title, movie %></h1>
     </header>
     <h3>Description:</h3>
-    <p><%= truncate(movie.description, length: 140, separator: ' ') %></p>
+    <p><%= truncate(movie.description, length: 80, separator: ' ') %></p>
 
     <table>
       <tr>
@@ -34,6 +34,10 @@
         <th>Box Office Gross:</th>
         <td><%= format_total_gross(movie) %></td>
       </tr>
+      <tr>
+        <th>Average Reviewer Rating:</th>
+        <td><%= format_average_stars(movie) %></td>
+      </tr>
     </table>
-  </article>
-<% end %>
+  <% end %>
+</article>

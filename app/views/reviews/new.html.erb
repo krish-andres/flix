@@ -1,0 +1,23 @@
+<header>
+  <h1>New Review for <%= link_to @movie.title, @movie %></h1>
+</header>
+
+<%= form_for [@movie, @review] do |f| %>
+  <div>
+    <%= render 'shared/errors', object: @review %>
+  </div>
+  <p>
+    <%= f.label :name %><br />
+    <%= f.text_field :name, autofocus: true %>
+  </p>
+  <p>
+    <%= f.label :stars %><br />
+    <%= f.select :stars, Review::STARS, prompt: "Select" %>
+  </p>
+  <p>
+    <%= f.label :comment %><br />
+    <%= f.text_area :comment, cols: 80, rows: 7, placeholder: "What did you think?" %>
+  </p>
+  <%= f.submit 'Post Review' %> | 
+  <%= link_to "Cancel", movie_reviews_path(@movie) %>
+<% end %>
