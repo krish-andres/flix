@@ -1,0 +1,10 @@
+<header>
+  <h1><%= @user.name %></h1>
+  <h3><%= @user.email %></h3>
+</header>
+<footer>
+  <nav>
+    <%= link_to 'Edit Account', edit_user_path(@user) %>
+    <%= link_to 'Delete Account', @user, method: :delete, data: { confirm: "Are you sure?" } %>
+  </nav>
+</footer>
