@@ -1,9 +1,19 @@
 <aside id="sidebar">
   <nav>
     <ul>
-      <li><%= link_to 'Sign Up', signup_path %></li>
-      <li><%= link_to "Add New Movie", new_movie_path  %></li>
-      <li><%= link_to "All Movies", movies_path %></li>
+      <div>
+        <% unless current_user %>
+          <%= link_to "Sign In", signin_path %><br />
+          <%= link_to 'Sign Up', signup_path %>
+        <% else %>
+          <%= link_to current_user.name, current_user %><br />
+          <%= link_to "Account Settings", edit_user_path(current_user) %><br />
+          <%= link_to 'Sign Out', session_path, method: :delete %>
+        <% end %>
+      </div>
+      <br />
+        <li><%= link_to "Add New Movie", new_movie_path  %></li>
+        <li><%= link_to "All Movies", movies_path %></li>
     </ul>
   </nav>
 </aside>

@@ -18,6 +18,8 @@ describe "Creating a user" do
     expect(current_path).to eq(user_path(User.last))
     expect(page).to have_text("Example User")
     expect(page).to have_text("Account Successfully Created!")
+    expect(page).not_to have_link('Sign In')
+    expect(page).not_to have_link('Sign Up')
   end
 
   it "does not save the user if it's invalid" do
