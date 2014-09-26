@@ -1,5 +1,7 @@
 Flix::Application.routes.draw do
 
+  resources :genres
+
   get '/signin' => "sessions#new"
   resource :session
 

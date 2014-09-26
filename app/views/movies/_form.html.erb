@@ -38,6 +38,9 @@
     <%= f.label :image_file_name %><br />
     <%= f.text_field :image_file_name %>
   </p>
+  <p>
+    <%= f.collection_check_boxes :genre_ids, Genre.all, :id, :name %>
+  </p>
   <%= f.submit %> | 
   <%= link_to "Cancel", movies_path %>
 <% end %>
