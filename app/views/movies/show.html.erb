@@ -1,8 +1,23 @@
-<h1><%= @movie.title %></h1>
+<h1><%= @movie.title %> (<%= @movie.rating %>)</h1>
 <%= image_for(@movie) %>
+<br /><br />
 
-<h3>Rating:</h3>
-<p><%= @movie.rating %></p>
+<% if current_user %>
+  <% unless @current_favorite %>
+    <%= button_to 'Fave', movie_favorites_path(@movie) %>
+  <% else %>
+    <%= button_to 'Unfave', movie_favorite_path(@movie, @current_favorite), method: :delete %>
+  <% end %>
+<% end %>
+
+<% if @fans.any? %>
+  <h3><%= pluralize(@fans.size, 'Fan') %></h3>
+  <ul>
+    <% @fans.each do |fan| %>
+      <li><%= link_to fan.name, fan %></li>
+    <% end %>
+  </ul>
+<% end %>
 
 <h3>Description:</h3>
 <p><%= @movie.description %></p>
@@ -28,14 +43,17 @@
 </strong>
 
 <p>
-  <%= link_to pluralize(@movie.reviews.size, "Review"), movie_reviews_path(@movie) %>
+  <%= link_to "Reviews", movie_reviews_path(@movie) %> <strong>(<%= @movie.reviews.size %>)</strong>
 </p>
 
 <br />
 
-<nav>
-  <%= link_to "Write Review", new_movie_review_path(@movie) %> ||
+<nav id="movies">
+  <% if current_user %>
+    <%= link_to "Write Review", new_movie_review_path(@movie) %>
+  <% end %>
   <% if current_user_admin? %>
+     ||
     <%= link_to "Edit", edit_movie_path(@movie) %> ||
     <%= link_to "Delete", @movie, method: :delete, data: { confirm: 'Are you sure?' } %>
   <% end %>

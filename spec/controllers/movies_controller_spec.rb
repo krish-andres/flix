@@ -10,7 +10,7 @@ describe MoviesController do
     
     before do
       non_admin = User.create!(user_attributes(admin: false))
-      session[:user_id] = non_admin.id
+      session[:user_id] = non_admin
     end
 
     it "cannot access new" do

@@ -6,7 +6,7 @@
   <% @reviews.each do |review| %>
     <li>
       <p>
-        <strong><%= pluralize(review.stars, 'Star') %></strong> by <strong><%= review.name %></strong>:
+        <strong><%= pluralize(review.stars, 'Star') %></strong> by <strong><%= link_to review.user.name, review.user %></strong>:
       </p>
       <p>
         &quot;<%= review.comment %>&quot;

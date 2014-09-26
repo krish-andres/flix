@@ -9,6 +9,7 @@ Flix::Application.routes.draw do
   root "movies#index"
   resources :movies do
     resources :reviews
+    resources :favorites
   end
 
   # The priority is based upon order of creation: first created -> highest priority.

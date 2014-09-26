@@ -16,14 +16,6 @@ describe "A review" do
     expect(review.valid?).to eq(true)
   end
 
-  it "requires a name" do
-    review = Review.new(name: "")
-
-    review.valid?
-
-    expect(review.errors[:name].any?).to eq(true)
-  end
-
   it "requires a comment over 3 characters" do
     review = Review.new(comment: "X" * 3)
 
@@ -50,5 +42,4 @@ describe "A review" do
       expect(review.errors[:stars].first).to eq("Must be between 1 and 5!")
     end
   end
-
 end
