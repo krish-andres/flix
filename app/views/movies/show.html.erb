@@ -1,3 +1,4 @@
+<% content_for :title, @movie.title %>
 <h1><%= @movie.title %> (<%= @movie.rating %>)</h1>
 <%= image_for(@movie) %>
 <br /><br />
@@ -8,24 +9,6 @@
   <% else %>
     <%= button_to 'Unfave', movie_favorite_path(@movie, @current_favorite), method: :delete %>
   <% end %>
-<% end %>
-
-<% if @fans.any? %>
-  <h3><%= pluralize(@fans.size, 'Fan') %></h3>
-  <ul>
-    <% @fans.each do |fan| %>
-      <li><%= link_to fan.name, fan %></li>
-    <% end %>
-  </ul>
-<% end %>
-
-<% if @genres.any? %>
-  <h3>Genre(s)</h3>
-  <ul>
-    <% @genres.each do |genre| %>
-      <li><%= genre.name %></li>
-    <% end %>
-  </ul>
 <% end %>
 
 <h3>Description:</h3>
@@ -67,3 +50,23 @@
     <%= link_to "Delete", @movie, method: :delete, data: { confirm: 'Are you sure?' } %>
   <% end %>
 </nav>
+
+<% content_for :side do %>
+  <% if @fans.any? %>
+    <h3><%= pluralize(@fans.size, 'Fan') %></h3>
+    <ul>
+      <% @fans.each do |fan| %>
+        <li><%= link_to fan.name, fan %></li>
+      <% end %>
+    </ul>
+  <% end %>
+
+  <% if @genres.any? %>
+    <h3>Genre(s)</h3>
+    <ul>
+      <% @genres.each do |genre| %>
+        <li><%= genre.name %></li>
+      <% end %>
+    </ul>
+  <% end %>
+<% end %>
