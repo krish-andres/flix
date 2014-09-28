@@ -12,4 +12,7 @@ class User < ActiveRecord::Base
     user = User.find_by(email: email)
     user && user.authenticate(password)
   end
+
+  scope :by_name, -> { order("name ASC") } 
+  scope :non_admin, -> { by_name.where(admin: false) }
 end

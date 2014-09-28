@@ -181,4 +181,42 @@ describe "A movie" do
     expect(movie.fans).to include(fan2)
   end
 
+  context "upcoming query" do
+    it "returns the upcoming movies" do
+      movie1 = Movie.create!(movie_attributes(released_on: 2.months.ago))
+      movie2 = Movie.create!(movie_attributes(released_on: 2.months.from_now))
+
+      expect(Movie.upcoming).to eq([movie2])
+    end
+  end
+
+  context "rated query" do
+    it "returns released movies with the specific rating" do
+      movie1 = Movie.create!(movie_attributes(released_on: 3.months.ago, rating: "PG"))
+      movie2 = Movie.create!(movie_attributes(released_on: 3.months.ago, rating: "PG-13"))
+      movie3 = Movie.create!(movie_attributes(released_on: 1.month.from_now, rating: "PG"))
+
+      expect(Movie.rated("PG")).to eq([movie1])
+    end
+  end
+
+  context "recent query" do
+    before do
+      @movie1 = Movie.create!(movie_attributes(released_on: 3.months.ago))
+      @movie2 = Movie.create!(movie_attributes(released_on: 2.months.ago))
+      @movie3 = Movie.create!(movie_attributes(released_on: 1.months.ago))
+      @movie4 = Movie.create!(movie_attributes(released_on: 1.week.ago))
+      @movie5 = Movie.create!(movie_attributes(released_on: 1.day.ago))
+      @movie6 = Movie.create!(movie_attributes(released_on: 1.hour.ago))
+      @movie7 = Movie.create!(movie_attributes(released_on: 1.day.from_now))
+    end
+
+    it "returns a specified number of released movies ordered with the most recent movie first" do
+      expect(Movie.recent(2)).to eq([@movie6, @movie5])
+    end
+
+    it "returns a default of 5 released movies ordered with the most recent movie first" do
+      expect(Movie.recent).to eq([@movie6, @movie5, @movie4, @movie3, @movie2])
+    end
+  end
 end

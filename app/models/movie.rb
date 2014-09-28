@@ -20,17 +20,12 @@ class Movie < ActiveRecord::Base
     total_gross.blank? || total_gross < 50000000
   end
 
-  def self.released
-    where("released_on <= ?", Date.today).order("released_on DESC")
-  end
-
-  def self.hit
-    where("total_gross >= ?", 300000000).order("total_gross DESC")
-  end
-
-  def self.flop
-    where("total_gross <= ?", 50000000).order("total_gross")
-  end
+  scope :released, -> { where("released_on <= ?", Date.today).order("released_on DESC") }
+  scope :hits, -> { released.where("total_gross >= ?", 300000000).order("total_gross DESC") }
+  scope :flops, -> { released.where("total_gross <= ?", 50000000).order("total_gross ASC") }
+  scope :upcoming, -> { where("released_on >= ?", Date.today).order("released_on ASC") }
+  scope :rated, ->(rating) { released.where("rating = ?", rating) }
+  scope :recent, ->(max=5) { released.limit(max) }
 
   def self.recently_added
     order("created_at DESC").limit(3)
