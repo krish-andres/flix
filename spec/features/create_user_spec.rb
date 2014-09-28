@@ -11,6 +11,7 @@ describe "Creating a user" do
 
     fill_in 'Name', with: "Example User"
     fill_in 'Email', with: "user@example.com"
+    fill_in 'Username', with: "exampleuser"
     fill_in 'Password', with: "superfluous"
     fill_in 'Confirm Password', with: "superfluous"
 

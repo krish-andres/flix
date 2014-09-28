@@ -2,9 +2,9 @@ require 'spec_helper'
 
 describe "Listing the users" do
   it "shows the list of users" do
-    user1 = User.create!(user_attributes(name: "Larry", email: "larry@example.com"))
-    user2 = User.create!(user_attributes(name: "Curly", email: "curly@example.com"))
-    user3 = User.create!(user_attributes(name: "Moe", email: "moe@example.com"))
+    user1 = User.create!(user_attributes(username: "larry", name: "Larry", email: "larry@example.com"))
+    user2 = User.create!(user_attributes(username: "curly", name: "Curly", email: "curly@example.com"))
+    user3 = User.create!(user_attributes(username: "moe", name: "Moe", email: "moe@example.com"))
 
     sign_in(user1)
     
